@@ -17,8 +17,7 @@ QUnit.test('Clippy can encode a wav file.',function(assert){
 	clippy.decode('./audio/talking.wav').then(function(info){
 		clippy.encode('./outputs/talking.wav',info).then(function(){
 			var buffer = fs.readFileSync('./outputs/talking.wav')
-			var equal = originalBuffer.length == buffer.length
-			assert.ok(equal,'When I encode a decoded sample, the buffer is the same length as the original.')
+			assert.equal(buffer.length,originalBuffer.length,'When I encode a decoded sample, the buffer is the same length as the original.')
 			done()
 		})
 	})
@@ -34,24 +33,24 @@ QUnit.test('Clippy can determine the highest amplitude of an audio sample.',func
 	}).catch(done)
 })
 
-QUnit.test('Clippy can identify an audio sample as silent.',function(assert){
+QUnit.test('Clippy can recognize silence.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/silent.wav').then(function(info){
 		var sample = info.channelData[0]
 		var amplitude = clippy.determineHighestAmplitude(sample)
 		var volume = clippy.determineVolumeType(amplitude)
-		assert.ok(volume == 'silent','A silent recording is categorized as silent.')
+		assert.equal(volume,'silence','A silent recording is categorized as silent.')
 		done()
 	})
 })
 
-QUnit.test('Clippy can identify an audio sample as background.',function(assert){
+QUnit.test('Clippy can recognize noise.',function(assert){
 	var done = assert.async()
-	clippy.decode('./audio/background.wav').then(function(info){
+	clippy.decode('./audio/talking.wav').then(function(info){
 		var sample = info.channelData[0]
 		var amplitude = clippy.determineHighestAmplitude(sample)
 		var volume = clippy.determineVolumeType(amplitude)
-		assert.ok(volume == 'background','A background recording is categorized as background.')
+		assert.equal(volume,'noise','A noisy recording is categorized as noisy.')
 		done()
 	})
 })

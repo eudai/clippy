@@ -6,15 +6,9 @@
 
 [X] Clippy can determine the highest amplitude of an audio sample.
 
-[X] Clippy can identify an audio sample as silent.
+[X] Clippy can recognize silence.
 
-[ ] Clippy can identify an audio sample as background.
-
-[ ] Clippy can identify an audio sample as whispering.
-
-[ ] Clippy can identify an audio sample as talking.
-
-[ ] Clippy can identify an audio sample as yelling.
+[ ] Clippy can recognize noise.
 
 [ ] Clippy can find the beginning of a word.
 

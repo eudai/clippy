@@ -41,9 +41,14 @@ var Clippy = function(){
 
 	this.determineVolumeType = function(amplitude){
 		var type = volumeTypes.find(function(category){
-			return amplitude >= category.min  && amplitude <= category.max
+			if (category.min){
+				if (amplitude < category.min) return false
+			}
+			if (category.max){
+				if (amplitude > category.max) return false
+			}
+			return true
 		})
-		if (!type) type = { description: 'Unknown' }
 		return type.description
 	}
 
