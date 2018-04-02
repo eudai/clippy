@@ -39,7 +39,7 @@ QUnit.test('Clippy can recognize silence.',function(assert){
 		var sample = info.channelData[0]
 		var amplitude = clippy.determineHighestAmplitude(sample)
 		var volume = clippy.determineVolumeType(amplitude)
-		assert.equal(volume,'silence','A silent recording is categorized as silent.')
+		assert.equal(volume,'silence','A quiet sample is identified as silence.')
 		done()
 	})
 })
@@ -50,7 +50,7 @@ QUnit.test('Clippy can recognize noise.',function(assert){
 		var sample = info.channelData[0]
 		var amplitude = clippy.determineHighestAmplitude(sample)
 		var volume = clippy.determineVolumeType(amplitude)
-		assert.equal(volume,'noise','A noisy recording is categorized as noisy.')
+		assert.equal(volume,'noise','A loud recording is identified as noise.')
 		done()
 	})
 })

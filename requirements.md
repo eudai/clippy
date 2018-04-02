@@ -8,7 +8,7 @@
 
 [X] Clippy can recognize silence.
 
-[ ] Clippy can recognize noise.
+[X] Clippy can recognize noise.
 
 [ ] Clippy can find the beginning of a word.
 
