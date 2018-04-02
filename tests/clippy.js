@@ -12,7 +12,7 @@ QUnit.test('Clippy can decode a wav file.',function(assert){
 	}).catch(done)
 })
 
-QUnit.test('Clippy can get the amplitude ranges of audio channel.',function(assert){
+QUnit.test('Clippy can determine the amplitude range of an audio sample.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/hello.wav').then(function(info){
 		var channel = info.channelData[0]

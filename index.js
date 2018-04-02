@@ -1,11 +1,7 @@
 var Clippy = require('./library/clippy.js')
 var clippy = new Clippy
 
-var filename = './audio/hello.wav'
-
-clippy.decode(filename).then(function(info){
-	var ranges = info.channelData.map(function(channel){
-		return clippy.getAmplitudeRange(channel)
-	})
-	console.log(ranges)
+clippy.decode('./audio/silent.wav').then(function(info){
+	var data = info.channelData[0]
+	var quiet = clippy.isQuiet(data)
 })

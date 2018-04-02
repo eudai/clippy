@@ -31,8 +31,10 @@ var Clippy = function(){
 		})
 	}
 
-	this.isQuiet = function(data){
-		
+	this.categorizeAmplitude = function(data){
+		var range = this.getAmplitudeRange(data)
+		var diff = range.high - range.low
+		debugger
 	}
 
 }

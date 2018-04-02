@@ -1,12 +1,35 @@
 # Requirements
 
+[X] Clippy can decode a wav file.
 
-Clippy should accept audio files in wav format.
+[ ] Clippy can encode a wav file.
 
-Clippy should be split audio files based on inactivity.
+[X] Clippy can determine the amplitude range of an audio sample.
 
-Clippy can detect dead space.
+[ ] Clippy can identify an audio sample as silent.
 
-Clippy should remove dead space.
+[ ] Clippy can identify an audio sample as background noises.
 
-Clippy should be able to accept streamed files.
+[ ] Clippy can identify an audio sample as whispering.
+
+[ ] Clippy can identify an audio sample as talking.
+
+[ ] Clippy can identify an audio sample as yelling.
+
+[ ] Clippy can find the beginning of a word.
+
+[ ] Clippy can find the end of a word.
+
+[ ] Clippy can create a file of an isolated word.
+
+[ ] Clippy can find the beginning of a sentence.
+
+[ ] Clippy can find the end of a sentence.
+
+[ ] Clippy can create a file of an isolated sentence.
+
+[ ] Clippy can find the beginning of a conversation.
+
+[ ] Clippy can find the end of a conversation.
+
+[ ] Clippy can create a file of an isolated conversation.
