@@ -6,7 +6,6 @@ QUnit.test('Clippy can decode a wav file.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/talking.wav').then(function(info){
 		var samples = info.channelData
-		assert.ok(samples.length > 0,'The file had at least one sample.')
 		assert.ok(samples[0].length > 0,'The first sample had data.')
 		done()
 	})
