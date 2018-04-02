@@ -16,6 +16,13 @@ var Clippy = function(){
 		})
 	}
 
+	this.getAmplitudeRange = function(data){
+		return {
+			low: 0,
+			high: 0
+		}
+	}
+
 }
 
 module.exports = Clippy
