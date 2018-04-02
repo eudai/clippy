@@ -22,8 +22,8 @@ A smart audio file clipper.
 
 ## References
 
-	[qunit](http://api.qunitjs.com/)
+[qunit](http://api.qunitjs.com/)
 
-	[node-qunit](https://github.com/qunitjs/node-qunit)
+[node-qunit](https://github.com/qunitjs/node-qunit)
 
-	[wav-decoder](https://github.com/mohayonao/wav-decoder)
+[wav-decoder](https://github.com/mohayonao/wav-decoder)
