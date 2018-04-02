@@ -1,5 +1,5 @@
 [{
-	"type" : "silent",
+	"description" : "silent",
 	"min": 0,
 	"max": 0.065
 }]

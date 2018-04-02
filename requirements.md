@@ -4,7 +4,7 @@
 
 [ ] Clippy can encode a wav file.
 
-[X] Clippy can determine the amplitude range of an audio sample.
+[X] Clippy can determine the highest amplitude of an audio sample.
 
 [ ] Clippy can identify an audio sample as silent.
 

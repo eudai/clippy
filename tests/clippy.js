@@ -3,28 +3,28 @@ var clippy = new Clippy
 
 QUnit.test('Clippy can decode a wav file.',function(assert){
 	var done = assert.async()
-	clippy.decode('./audio/hello.wav').then(function(info){
+	clippy.decode('./audio/talking.wav').then(function(info){
 		var channels = info.channelData
 		var firstChannel = channels[0]
 		assert.ok(channels.length > 0,'The file had at least one channel.')
 		assert.ok(firstChannel.length > 0,'The first channel had data.')
 		done()
-	}).catch(done)
+	}).catch(function(error){
+		throw error
+	})
 })
 
-QUnit.test('Clippy can encode a wav file.',function(assert){
-	assert.ok(false,'When I encode a new file, the file size is equivalent to the original.')
-	assert.ok(false,'When I decode an encoded file, the data is equivalent to the original.')
-})
+// QUnit.test('Clippy can encode a wav file.',function(assert){
+// 	assert.ok(false,'When I encode a new file, the file size is equivalent to the original.')
+// 	assert.ok(false,'When I decode an encoded file, the data is equivalent to the original.')
+// })
 
-QUnit.test('Clippy can determine the amplitude range of an audio sample.',function(assert){
+QUnit.test('Clippy can determine the highest amplitude of an audio sample.',function(assert){
 	var done = assert.async()
-	clippy.decode('./audio/hello.wav').then(function(info){
-		var channel = info.channelData[0]
-		var range = clippy.getAmplitudeRange(channel)
-		assert.ok(typeof range.low == 'number','The low range was a number.')
-		assert.ok(typeof range.high == 'number','The high range was a number.')
-		assert.ok(range.high > range.low,'The high range was greater than the low.')
+	clippy.decode('./audio/talking.wav').then(function(info){
+		var sample = info.channelData[0]
+		var amplitude = clippy.determineHighestAmplitude(sample)
+		assert.ok(amplitude > 0,'The highest amplitude was greater than zero.')
 		done()
 	}).catch(done)
 })
@@ -32,9 +32,11 @@ QUnit.test('Clippy can determine the amplitude range of an audio sample.',functi
 QUnit.test('Clippy can identify an audio sample as silent.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/silent.wav').then(function(info){
-		var channel = info.channelData[0]
-		var silent = clippy.isQuiet(channel)
-		assert.ok(silent,'A silent file is determined to be silent.')
+		var sample = info.channelData[0]
+		var amplitude = clippy.determineHighestAmplitude(sample)
+		var volume = clippy.determineVolumeType(amplitude)
+		console.log('volume:',volume)
+		assert.ok(volume == 'silent','A silent recording is categorized as silent.')
 		done()
 	}).catch(done)
 })

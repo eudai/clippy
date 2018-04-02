@@ -1,5 +1,6 @@
 var fs = require('fs')
 var WavDecoder = require('wav-decoder')
+var volumeTypes = require('../config/volume-types.json')
 
 var Clippy = function(){
 
@@ -16,26 +17,26 @@ var Clippy = function(){
 		})
 	}
 
-	this.getAmplitudeRange = function(data){
-		return data.reduce(function(accumulator,amplitude){
-			if (amplitude > accumulator.high){
-				accumulator.high = amplitude
-			}
-			if (amplitude < accumulator.low){
-				accumulator.low = amplitude
-			}
+	this.determineHighestAmplitude = function(sample){
+		var highestDecible = sample.reduce(function(accumulator,amplitude){
+			if (amplitude > accumulator) 
+				accumulator = amplitude
 			return accumulator
-		},{
-			low: data[0],
-			high: data[0]
-		})
+		},0)
+		var highestAmplitude = highestDecible * 2
+		return highestAmplitude
 	}
 
-	this.categorizeAmplitude = function(data){
-		var range = this.getAmplitudeRange(data)
-		var diff = range.high - range.low
+	this.determineVolumeType = function(amplitude){
+		var type = volumeTypes.find(function(category){
+			return amplitude >= category.min  && amplitude <= category.max
+		})
 		debugger
+		if (!type) type = { description: 'Unknown' }
+		return type.description
 	}
+
+
 
 }
 
