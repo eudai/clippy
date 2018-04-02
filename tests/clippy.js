@@ -23,3 +23,12 @@ QUnit.test('Clippy can get the amplitude ranges of audio channel.',function(asse
 		done()
 	}).catch(done)
 })
+
+QUnit.test('Clippy can determine that a quiet file is quiet.',function(assert){
+	var done = assert.async()
+	clippy.decode('./audio/silent.wav').then(function(info){
+		var channel = info.channelData[0]
+		var silent = clippy.isQuiet(channel)
+		assert.ok(silent,'A silent file is determined to be silent.')
+	}).catch(done)
+})
