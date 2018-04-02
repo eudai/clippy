@@ -31,6 +31,10 @@ var Clippy = function(){
 		})
 	}
 
+	this.isQuiet = function(data){
+		
+	}
+
 }
 
 module.exports = Clippy

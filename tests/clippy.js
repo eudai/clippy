@@ -30,5 +30,6 @@ QUnit.test('Clippy can determine that a quiet file is quiet.',function(assert){
 		var channel = info.channelData[0]
 		var silent = clippy.isQuiet(channel)
 		assert.ok(silent,'A silent file is determined to be silent.')
+		done()
 	}).catch(done)
 })
