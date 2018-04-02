@@ -10,20 +10,4 @@
 
 [X] Clippy can recognize noise.
 
-[ ] Clippy can find the beginning of a word.
-
-[ ] Clippy can find the end of a word.
-
-[ ] Clippy can create a file of an isolated word.
-
-[ ] Clippy can find the beginning of a sentence.
-
-[ ] Clippy can find the end of a sentence.
-
-[ ] Clippy can create a file of an isolated sentence.
-
-[ ] Clippy can find the beginning of a conversation.
-
-[ ] Clippy can find the end of a conversation.
-
-[ ] Clippy can create a file of an isolated conversation.
+[ ] Clippy can isolate conversations.

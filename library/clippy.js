@@ -1,7 +1,7 @@
 var fs = require('fs')
 var WavDecoder = require('wav-decoder')
 var WavEncoder = require('wav-encoder')
-var volumeTypes = require('../config/volume-types.json')
+var settings = require('../config/settings.json')
 
 var Clippy = function(){
 
@@ -29,27 +29,22 @@ var Clippy = function(){
 		})
 	}
 
-	this.determineHighestAmplitude = function(sample){
+	this.findMagnitude = function(sample){
 		var highestDecible = sample.reduce(function(accumulator,amplitude){
 			if (amplitude > accumulator) 
 				accumulator = amplitude
 			return accumulator
 		},0)
-		var highestAmplitude = highestDecible * 2
-		return highestAmplitude
+		var magnitude = highestDecible * 2
+		return magnitude
 	}
 
-	this.determineVolumeType = function(amplitude){
-		var type = volumeTypes.find(function(category){
-			if (category.min){
-				if (amplitude < category.min) return false
-			}
-			if (category.max){
-				if (amplitude > category.max) return false
-			}
-			return true
-		})
-		return type.description
+	this.isSilent = function(magnitude){
+		return magnitude < settings.tolerance
+	}
+
+	this.findConversations = function(samples){
+		return []
 	}
 
 

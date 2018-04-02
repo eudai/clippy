@@ -27,7 +27,7 @@ QUnit.test('Clippy can determine the highest amplitude of an audio sample.',func
 	var done = assert.async()
 	clippy.decode('./audio/talking.wav').then(function(info){
 		var sample = info.channelData[0]
-		var amplitude = clippy.determineHighestAmplitude(sample)
+		var amplitude = clippy.findMagnitude(sample)
 		assert.ok(amplitude > 0,'The highest amplitude was greater than zero.')
 		done()
 	}).catch(done)
@@ -37,9 +37,9 @@ QUnit.test('Clippy can recognize silence.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/silent.wav').then(function(info){
 		var sample = info.channelData[0]
-		var amplitude = clippy.determineHighestAmplitude(sample)
-		var volume = clippy.determineVolumeType(amplitude)
-		assert.equal(volume,'silence','A quiet sample is identified as silence.')
+		var amplitude = clippy.findMagnitude(sample)
+		var silent = clippy.isSilent(amplitude)
+		assert.ok(silent,'A quiet sample is identified as silence.')
 		done()
 	})
 })
@@ -48,9 +48,19 @@ QUnit.test('Clippy can recognize noise.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/talking.wav').then(function(info){
 		var sample = info.channelData[0]
-		var amplitude = clippy.determineHighestAmplitude(sample)
-		var volume = clippy.determineVolumeType(amplitude)
-		assert.equal(volume,'noise','A loud recording is identified as noise.')
+		var amplitude = clippy.findMagnitude(sample)
+		var silent = clippy.isSilent(amplitude)
+		assert.ok(!silent,'A loud recording is identified as noise.')
+		done()
+	})
+})
+
+QUnit.test('Clippy can isolate conversations.',function(assert){
+	var done = assert.async()
+	clippy.decode('./audio/conversation.wav').then(function(info){
+		var samples = info.channelData
+		var conversations = clippy.findConversations(samples)
+		assert.equal(conversations.length,2,'Two conversations were isolated.')
 		done()
 	})
 })
