@@ -1,5 +1,6 @@
 var fs = require('fs')
 var WavDecoder = require('wav-decoder')
+var WavEncoder = require('wav-encoder')
 var volumeTypes = require('../config/volume-types.json')
 
 var Clippy = function(){
@@ -13,6 +14,17 @@ var Clippy = function(){
 				}).catch(function(error){
 					reject(error)
 				})
+			})
+		})
+	}
+
+	this.encode = function(filename,info){
+		return new Promise(function(resolve,reject){
+			WavEncoder.encode(info).then(function(buffer){
+				var file = fs.writeFileSync(filename,new Buffer(buffer))
+				resolve(file)
+			}).catch(function(error){
+				reject(error)
 			})
 		})
 	}
@@ -31,7 +43,6 @@ var Clippy = function(){
 		var type = volumeTypes.find(function(category){
 			return amplitude >= category.min  && amplitude <= category.max
 		})
-		debugger
 		if (!type) type = { description: 'Unknown' }
 		return type.description
 	}

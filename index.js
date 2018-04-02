@@ -1,7 +1,8 @@
 var Clippy = require('./library/clippy.js')
 var clippy = new Clippy
 
-clippy.decode('./audio/silent.wav').then(function(info){
-	var data = info.channelData[0]
-	var quiet = clippy.isQuiet(data)
+clippy.decode('./audio/talking.wav').then(function(info){
+	clippy.encode('./outputs/talking.wav',info).then(function(){
+		console.log('done.')
+	})
 })

@@ -1,23 +1,29 @@
+var fs = require('fs')
 var Clippy = require('../library/clippy.js')
 var clippy = new Clippy
 
 QUnit.test('Clippy can decode a wav file.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/talking.wav').then(function(info){
-		var channels = info.channelData
-		var firstChannel = channels[0]
-		assert.ok(channels.length > 0,'The file had at least one channel.')
-		assert.ok(firstChannel.length > 0,'The first channel had data.')
+		var samples = info.channelData
+		assert.ok(samples.length > 0,'The file had at least one sample.')
+		assert.ok(samples[0].length > 0,'The first sample had data.')
 		done()
-	}).catch(function(error){
-		throw error
 	})
 })
 
-// QUnit.test('Clippy can encode a wav file.',function(assert){
-// 	assert.ok(false,'When I encode a new file, the file size is equivalent to the original.')
-// 	assert.ok(false,'When I decode an encoded file, the data is equivalent to the original.')
-// })
+QUnit.test('Clippy can encode a wav file.',function(assert){
+	var done = assert.async()
+	var originalBuffer = fs.readFileSync('./audio/talking.wav')
+	clippy.decode('./audio/talking.wav').then(function(info){
+		clippy.encode('./outputs/talking.wav',info).then(function(){
+			var buffer = fs.readFileSync('./outputs/talking.wav')
+			var equal = originalBuffer.length == buffer.length
+			assert.ok(equal,'When I encode a decoded sample, the buffer is the same length as the original.')
+			done()
+		})
+	})
+})
 
 QUnit.test('Clippy can determine the highest amplitude of an audio sample.',function(assert){
 	var done = assert.async()
@@ -35,10 +41,9 @@ QUnit.test('Clippy can identify an audio sample as silent.',function(assert){
 		var sample = info.channelData[0]
 		var amplitude = clippy.determineHighestAmplitude(sample)
 		var volume = clippy.determineVolumeType(amplitude)
-		console.log('volume:',volume)
 		assert.ok(volume == 'silent','A silent recording is categorized as silent.')
 		done()
-	}).catch(done)
+	})
 })
 
 // QUnit.test('Clippy can identify an audio sample as background.',function(assert){
