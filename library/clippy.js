@@ -17,10 +17,18 @@ var Clippy = function(){
 	}
 
 	this.getAmplitudeRange = function(data){
-		return {
-			low: 0,
-			high: 0
-		}
+		return data.reduce(function(accumulator,amplitude){
+			if (amplitude > accumulator.high){
+				accumulator.high = amplitude
+			}
+			if (amplitude < accumulator.low){
+				accumulator.low = amplitdue
+			}
+			return accumulator
+		},{
+			low: data[0],
+			high: data[0]
+		})
 	}
 
 }
