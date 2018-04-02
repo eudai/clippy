@@ -6,7 +6,7 @@
 
 [X] Clippy can determine the highest amplitude of an audio sample.
 
-[ ] Clippy can identify an audio sample as silent.
+[X] Clippy can identify an audio sample as silent.
 
 [ ] Clippy can identify an audio sample as background.
 
