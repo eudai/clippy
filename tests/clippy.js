@@ -8,3 +8,4 @@ QUnit.test('Clippy can decode a wav file.',function(assert){
 		done()
 	})
 })
+
