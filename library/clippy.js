@@ -22,7 +22,7 @@ var Clippy = function(){
 				accumulator.high = amplitude
 			}
 			if (amplitude < accumulator.low){
-				accumulator.low = amplitdue
+				accumulator.low = amplitude
 			}
 			return accumulator
 		},{

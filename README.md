@@ -4,7 +4,7 @@ A smart audio file clipper.
 
 ## Dependencies
 
-
+[Node.js](https://nodejs.org)
 
 ## Setup
 
