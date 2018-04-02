@@ -45,9 +45,16 @@ QUnit.test('Clippy can identify an audio sample as silent.',function(assert){
 	})
 })
 
-// QUnit.test('Clippy can identify an audio sample as background.',function(assert){
-// 	assert.ok(false,'')
-// })
+QUnit.test('Clippy can identify an audio sample as background.',function(assert){
+	var done = assert.async()
+	clippy.decode('./audio/background.wav').then(function(info){
+		var sample = info.channelData[0]
+		var amplitude = clippy.determineHighestAmplitude(sample)
+		var volume = clippy.determineVolumeType(amplitude)
+		assert.ok(volume == 'background','A background recording is categorized as background.')
+		done()
+	})
+})
 
 // QUnit.test('Clippy can identify an audio sample as whispering.',function(assert){
 // 	assert.ok(false,'')
