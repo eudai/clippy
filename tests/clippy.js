@@ -12,6 +12,11 @@ QUnit.test('Clippy can decode a wav file.',function(assert){
 	}).catch(done)
 })
 
+QUnit.test('Clippy can encode a wav file.',function(assert){
+	assert.ok(false,'When I encode a new file, the file size is equivalent to the original.')
+	assert.ok(false,'When I decode an encoded file, the data is equivalent to the original.')
+})
+
 QUnit.test('Clippy can determine the amplitude range of an audio sample.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/hello.wav').then(function(info){
@@ -24,7 +29,7 @@ QUnit.test('Clippy can determine the amplitude range of an audio sample.',functi
 	}).catch(done)
 })
 
-QUnit.test('Clippy can determine that a quiet file is quiet.',function(assert){
+QUnit.test('Clippy can identify an audio sample as silent.',function(assert){
 	var done = assert.async()
 	clippy.decode('./audio/silent.wav').then(function(info){
 		var channel = info.channelData[0]
@@ -33,3 +38,55 @@ QUnit.test('Clippy can determine that a quiet file is quiet.',function(assert){
 		done()
 	}).catch(done)
 })
+
+// QUnit.test('Clippy can identify an audio sample as background.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can identify an audio sample as whispering.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can identify an audio sample as talking.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can identify an audio sample as yelling.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can find the beginning of a word.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can find the end of a word.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can create a file of an isolated word.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can find the beginning of a sentence.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can find the end of a sentence.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can create a file of an isolated sentence.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can find the beginning of a conversation.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can find the end of a conversation.',function(assert){
+// 	assert.ok(false,'')
+// })
+
+// QUnit.test('Clippy can create a file of an isolated conversation.',function(assert){
+// 	assert.ok(false,'')
+// })

@@ -8,7 +8,7 @@
 
 [ ] Clippy can identify an audio sample as silent.
 
-[ ] Clippy can identify an audio sample as background noises.
+[ ] Clippy can identify an audio sample as background.
 
 [ ] Clippy can identify an audio sample as whispering.
 
