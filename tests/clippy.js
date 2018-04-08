@@ -63,4 +63,4 @@ QUnit.test('Clippy can isolate conversations.',function(assert){
 		assert.equal(conversations.length,2,'Two conversations were isolated.')
 		done()
 	})
-})
+})	

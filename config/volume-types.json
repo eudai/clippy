@@ -1,9 +1,0 @@
-[{
-	"description" : "silence",
-	"min": 0,
-	"max": 0.1
-},{
-	"description" : "noise",
-	"min": 0.1,
-	"max": null
-}]

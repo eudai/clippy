@@ -1,11 +1,19 @@
 var Clippy = require('./library/clippy.js')
 var clippy = new Clippy
+var moment = require('moment')
 
-clippy.decode('./audio/yelling.wav').then(function(info){
+clippy.decode('./audio/theodore-hello-1.wav').then(function(info){
 	var samples = info.channelData
-	for (var i in samples){
-		var sample = samples[i]
-		var magnitude = clippy.findMagnitude(sample)
-		var silent = clippy.isSilent(magnitude)
-	}
+	var conversations = clippy.findConversations(samples)
+	conversations.forEach(function(conversation,index,array){
+		var time = moment().format('YYYYMMDD')
+		var destination = './outputs/output-' + index + '-' + time + '.wav'
+		debugger
+		clippy.encode(destination,{
+			sampleRate: info.sampleRate,
+			channelData: conversation
+		}).then(function(file){
+			debugger
+		})
+	})
 })
